@@ -1,3 +1,20 @@
 /**
  * Chess board game base styles.
+ *
+ * Module: chessboard.
+ * ShortName: cbg (chess board game).
  */
+
+.chessboard {
+    background-color: red;
+    border: 1px solid black;
+    margin: 0 auto;
+}
+
+.cbg-white {
+    background-color: white;
+}
+
+.cbg-black {
+    background-color: black;
+}
