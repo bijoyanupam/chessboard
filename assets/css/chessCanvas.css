@@ -11,6 +11,11 @@
     margin: 0 auto;
 }
 
+.cbg-cell {
+    border: 1px solid black;
+    float: left;
+}
+
 .cbg-white {
     background-color: white;
 }
