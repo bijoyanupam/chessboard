@@ -6,7 +6,6 @@
  */
 
 .chessboard {
-    background-color: red;
     border: 1px solid black;
     margin: 0 auto;
 }
@@ -14,12 +13,14 @@
 .cbg-cell {
     border: 1px solid black;
     float: left;
+    font-size: 80px;
+    text-align: center;
 }
 
 .cbg-white {
     background-color: white;
 }
 
-.cbg-black {
-    background-color: black;
+.cbg-gray {
+    background-color: gray;
 }

@@ -9,7 +9,7 @@ var chessConfig = {
     'boardIdentifier': '.chessboard',
     'boardCellIdentifier': 'cbg-cell',
     'boardCellWhiteIdentifier': 'cbg-white',
-    'boardCellBlackIdentifier': 'cbg-black'
+    'boardCellBlackIdentifier': 'cbg-gray'
 };
 
 // My debug console.

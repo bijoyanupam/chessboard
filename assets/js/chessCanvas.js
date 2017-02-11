@@ -47,12 +47,14 @@ var ChessBoard = {
         for (cellCount = 1; cellCount <= totalCellCount; cellCount++) {
             this.drawCell(cellCount);
         }
+
+        this.addChessCoins();
     },
 
     /**
      * Draw the chess cell.
      *
-     * @param cellCount string Current cell count.
+     * @param cellCount number Current cell count.
      * 
      * @return void
      */
@@ -67,7 +69,7 @@ var ChessBoard = {
     /**
      * Draw the colored chess cell with approproate color.
      *
-     * @param cellCount string Current cell count.
+     * @param cellCount number Current cell count.
      * 
      * @return string Current cell className.
      */
@@ -78,6 +80,39 @@ var ChessBoard = {
         this.currentCellColor = (this.currentCellColor === chessConfig.boardCellWhiteIdentifier) ? chessConfig.boardCellBlackIdentifier : chessConfig.boardCellWhiteIdentifier;
         return this.currentCellColor;
     },
+
+    /**
+     * Draw chess coins.
+     *
+     * @return void.
+     */
+    'addChessCoins': function () {
+        this.addCoinRook(0, true);
+        this.addCoinRook(chessConfig.boardCellNumber - 1, true);
+        this.addCoinRook((chessConfig.boardCellNumber * chessConfig.boardCellNumber) - chessConfig.boardCellNumber, false);
+        this.addCoinRook((chessConfig.boardCellNumber * chessConfig.boardCellNumber) - 1, false);
+    },
+
+    /**
+     * Add a rook chess coin using unicode font.
+     *
+     * @param cellNumber number Current cell count.
+     * @param isWhite    boolean Is white or black coin.
+     * 
+     * @return void.
+     */
+    'addCoinRook': function (cellNumber, isWhite) {
+        var rookCoinCode;
+
+        rookCoinCode = (isWhite === true) ? '&#9814;' : '&#9820;';
+        $('<div>' + rookCoinCode + '</div>')
+            .appendTo($(chessConfig.boardIdentifier).find('.' + chessConfig.boardCellIdentifier).eq(cellNumber))
+            .addClass('cbg-rook')
+            .css({
+                'fontSize': chessConfig.boardCellNumber * 10,
+                'lineHeight': this.cellHeight - 2 + 'px'
+            });
+    }
 };
 
 ChessBoard.init();
