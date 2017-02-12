@@ -9,12 +9,15 @@ var chessConfig = {
     'boardIdentifier': '.chessboard',
     'boardCellIdentifier': 'cbg-cell',
     'boardCellWhiteIdentifier': 'cbg-white',
-    'boardCellBlackIdentifier': 'cbg-gray'
+    'boardCellBlackIdentifier': 'cbg-gray',
+    'boardCoinWhiteIdentifier': 'white',
+    'boardCoinBlackIdentifier': 'black',
+    'boardCoinIndentifier': 'cbg-coin'
 };
 
 // My debug console.
 var debugConsole = function (str) {
     if (chessConfig.debug) {
-        console.log(str);
+        console.info(str);
     }
 };

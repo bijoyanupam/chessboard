@@ -5,9 +5,22 @@
  * ShortName: cbg (chess board game).
  */
 
+[draggable] {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: move;
+    /* fallback if grab cursor is unsupported */
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+
 .chessboard {
     border: 1px solid black;
     margin: 0 auto;
+    overflow: auto;
 }
 
 .cbg-cell {
@@ -23,4 +36,17 @@
 
 .cbg-gray {
     background-color: gray;
+}
+
+.cbg-droppable {
+    border: 1px solid cadetblue;
+}
+
+.cbg-droppable::after {
+    content: '';
+    background-color: lightblue;
+    display: block;
+    height: 100%;
+    opacity: 0.5;
+    width: 100%;
 }

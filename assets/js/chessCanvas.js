@@ -6,8 +6,12 @@ var ChessBoard = {
      * Non-configurable declarations.
      */
     'config': {
-        'boardSize': 800,
+        'boardSize': 700,
     },
+
+    'cellX': 0,
+
+    'cellY': 1,
 
     'currentCellColor': chessConfig.boardCellWhiteIdentifier,
 
@@ -20,14 +24,18 @@ var ChessBoard = {
     /**
      * Initialize all editables in the current page only once.
      *
+     * @param callback function Callback function.
+     *
      * @return void
      */
-    'init': function () {
+    'init': function (callback) {
         this.cellWidth = this.config.boardSize / chessConfig.boardCellNumber;
         this.cellHeight = this.config.boardSize / chessConfig.boardCellNumber;
 
 
         this.drawBoard();
+        debugConsole('Chess draw completed.');
+        callback();
     },
 
     /**
@@ -41,9 +49,9 @@ var ChessBoard = {
 
         debugConsole('Draw the chess canvas.');
         this.$boardElm.empty();
-        this.$boardElm.height(this.config.boardSize);
         this.$boardElm.width(this.config.boardSize);
 
+        debugConsole('Draw the chess cell.');
         for (cellCount = 1; cellCount <= totalCellCount; cellCount++) {
             this.drawCell(cellCount);
         }
@@ -59,11 +67,18 @@ var ChessBoard = {
      * @return void
      */
     'drawCell': function (cellCount) {
-        debugConsole('Draw the chess cell.');
-        $('<div class="' + chessConfig.boardCellIdentifier + '"></div>').appendTo(this.$boardElm)
+        this.cellY++;
+        if (((cellCount - 1) % 8) === 0) {
+            this.cellX++;
+            this.cellY = 1;
+        }
+        $('<div class="' + chessConfig.boardCellIdentifier + '"></div>')
+            .appendTo(this.$boardElm)
+            .addClass('cbg-cell-' + this.cellX + 'x' + this.cellY)
             .width(this.cellWidth - 2)
             .height(this.cellHeight - 2)
             .addClass(this.getCellColor(cellCount));
+        debugConsole('Cell Drawn: ' + cellCount);
     },
 
     /**
@@ -102,17 +117,18 @@ var ChessBoard = {
      * @return void.
      */
     'addCoinRook': function (cellNumber, isWhite) {
-        var rookCoinCode;
+        var rookCoinCode, coinTypeClass;
 
         rookCoinCode = (isWhite === true) ? '&#9814;' : '&#9820;';
+        coinTypeClass = (isWhite === true) ? chessConfig.boardCoinWhiteIdentifier : chessConfig.boardCoinBlackIdentifier;
         $('<div>' + rookCoinCode + '</div>')
             .appendTo($(chessConfig.boardIdentifier).find('.' + chessConfig.boardCellIdentifier).eq(cellNumber))
             .addClass('cbg-rook')
+            .attr('data-coin-type', coinTypeClass)
+            .addClass(chessConfig.boardCoinIndentifier)
             .css({
                 'fontSize': chessConfig.boardCellNumber * 10,
                 'lineHeight': this.cellHeight - 2 + 'px'
             });
     }
 };
-
-ChessBoard.init();
