@@ -4,7 +4,6 @@
 
 var chessConfig = {
     'debug': true,
-    'boardType': '8x8',
     'boardCellNumber': 8,
     'boardIdentifier': '.chessboard',
     'boardCellIdentifier': 'cbg-cell',

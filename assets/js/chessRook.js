@@ -13,8 +13,8 @@ var ChessRook = {
     'showAllowedMoves': function (currentIndex) {
         var allowedMinX = 1,
             allowedMinY = 1,
-            allowedMaxX = 8,
-            allowedMaxY = 8,
+            allowedMaxX = chessConfig.boardCellNumber,
+            allowedMaxY = chessConfig.boardCellNumber,
             xCount,
             yCount;
 

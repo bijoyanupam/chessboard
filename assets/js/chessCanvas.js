@@ -68,7 +68,7 @@ var ChessBoard = {
      */
     'drawCell': function (cellCount) {
         this.cellY++;
-        if (((cellCount - 1) % 8) === 0) {
+        if (((cellCount - 1) % chessConfig.boardCellNumber) === 0) {
             this.cellX++;
             this.cellY = 1;
         }
@@ -127,7 +127,7 @@ var ChessBoard = {
             .attr('data-coin-type', coinTypeClass)
             .addClass(chessConfig.boardCoinIndentifier)
             .css({
-                'fontSize': chessConfig.boardCellNumber * 10,
+                'fontSize': this.cellWidth - 2,
                 'lineHeight': this.cellHeight - 2 + 'px'
             });
     }
